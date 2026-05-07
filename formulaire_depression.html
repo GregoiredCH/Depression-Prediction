@@ -1,0 +1,341 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+<title>Depression ML Form</title>
+<style>
+    input[type="number"] {
+        width: 200px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Depression Form</h1>
+
+<fieldset>
+<legend>Information</legend>
+<p>
+    This form uses Machine Learning to estimate your level of depression.
+    It is based on the <b>NHANES Dataset</b>, a large American public health database
+    used in our depression prediction ML project.
+    <br/>
+    <br/>
+    Simply answer the questions below and get your results after you send in your answers.
+</p>
+<p style="color: red;">
+    <em>This questionnaire does not replace the advice of a healthcare professional.
+    <br/>
+    If you think you may be suffering from depression, we strongly encourage you to consult a doctor or specialist.</em>
+</p>
+</fieldset>
+
+<br/>
+
+<form action="resultats.php" method="POST">
+
+<fieldset>
+<legend>Personal Information</legend>
+
+<label for="idHeight">Height (cm):</label>
+<br/>
+<input type="number" name="height" id="idHeight" min="0" max="250" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idWeight">Weight (kg):</label>
+<br/>
+<input type="number" name="weight" id="idWeight" min="0" max="300" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idBMI">BMI (kg/m^2):</label>
+<br/>
+<small>If you don't know your BMI, you can calculate it: weight(kg) / height(m)^2</small>
+<br/>
+<input type="number" name="BMI" id="idBMI" min="0" max="100" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idEducation">Education level:</label>
+<br/>
+<select name="education_level" id="idEducation">
+    <option value="">-- Select --</option>
+    <option value="0">Missing / Refused / Don't know</option>
+    <option value="1">Less than 9th grade</option>
+    <option value="2">9th-11th grade (no diploma)</option>
+    <option value="3">High school graduate / GED</option>
+    <option value="4">Some college or AA degree</option>
+    <option value="5">College graduate or above</option>
+</select>
+<br/><br/>
+
+<label for="idMarital">Marital status:</label>
+<br/>
+<select name="marital_status" id="idMarital">
+    <option value="">-- Select --</option>
+    <option value="0">Divorced</option>
+    <option value="1">Married</option>
+    <option value="2">Missing</option>
+    <option value="3">Never Married</option>
+    <option value="4">Partner</option>
+    <option value="5">Separated</option>
+    <option value="6">Widowed</option>
+</select>
+<br/><br/>
+
+<label for="idIncome">Household income level:</label>
+<br/>
+<small>Total annual income of all members of your household combined.</small>
+<br/>
+<select name="household_income" id="idIncome">
+    <option value="">-- Select --</option>
+    <option value="0">Prefer not to say</option>
+    <option value="1">Under $5,000</option>
+    <option value="2">$5,000 to $9,999</option>
+    <option value="3">$10,000 to $14,999</option>
+    <option value="4">$15,000 to $19,999</option>
+    <option value="5">$20,000 to $24,999</option>
+    <option value="6">$25,000 to $34,999</option>
+    <option value="7">$35,000 to $44,999</option>
+    <option value="8">$45,000 to $54,999</option>
+    <option value="9">$55,000 to $64,999</option>
+    <option value="10">$65,000 to $74,999</option>
+    <option value="11">75,000 to $99,999</option>
+    <option value="12">$100,000 and over</option>
+</select>
+<br/><br/>
+
+<label for="idJobTime">Time in current job (years):</label>
+<br/>
+<small>Enter 0 if you are currently unemployed or retired.</small>
+<br/>
+<input type="number" name="time_in_current_job" id="idJobTime" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+</fieldset>
+<br/>
+
+<fieldset>
+<legend>Lifestyle</legend>
+
+<label for="idSleep">Sleep hours per night:</label>
+<br/>
+<small>On average, how many hours do you sleep per night?</small>
+<br/>
+<input type="number" name="sleep_hours" id="idSleep" min="0" max="24" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idSedentary">Sedentary time per day (minutes):</label>
+<br/>
+<small>Time spent sitting or lying down during the day (watching TV, working at a desk, etc.), not counting sleep.</small>
+<br/>
+<input type="number" name="sedentary_time" id="idSedentary" min="0" max="1440" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label>Have you ever told a doctor you had trouble sleeping?</label>
+<br/>
+<input type="radio" name="trouble_sleeping_history" id="idTroubleSleepYes" value="1">
+<label for="idTroubleSleepYes">Yes</label>
+<input type="radio" name="trouble_sleeping_history" id="idTroubleSleepNo" value="0">
+<label for="idTroubleSleepNo">No</label>
+<br/><br/>
+
+<label for="idDrinksOccasion">Average number of drinks per occasion:</label>
+<br/>
+<small>One drink = one beer, two glasses of wine, etc. Enter 0 if you don't drink.</small>
+<br/>
+<input type="number" name="drinks_per_occasion" id="idDrinksOccasion" min="0" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idDrinksYear">Number of drinks in past year:</label>
+<br/>
+<small>Total number of alcoholic drinks consumed over the past 12 months. Enter 0 if you don't drink.</small>
+<br/>
+<input type="number" name="drinks_past_year" id="idDrinksYear" min="0" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idStartSmoking">Age when you started smoking (0 if never):</label>
+<br/>
+<small>Age at which you smoked your first whole cigarette. Enter 0 if you have never smoked.</small>
+<br/>
+<input type="number" name="start_smoking_age" id="idStartSmoking" min="0" max="100" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idCigarettes">Average number of cigarettes per day:</label>
+<br/>
+<small>Over the past 30 days. Enter 0 if you don't smoke.</small>
+<br/>
+<input type="number" name="current_cigarettes_per_day" id="idCigarettes" min="0" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+</fieldset>
+<br/>
+
+<fieldset>
+<legend>Health Conditions</legend>
+
+<label>Because of a health problem, do you have difficulty remembering or are you confused?</label>
+<br/>
+<input type="radio" name="memory_problems" id="idMemoryYes" value="1">
+<label for="idMemoryYes">Yes</label>
+<input type="radio" name="memory_problems" id="idMemoryNo" value="0">
+<label for="idMemoryNo">No</label>
+<br/><br/>
+
+<label>Does a health problem keep you from working at a job or business?</label>
+<br/>
+<input type="radio" name="cant_work" id="idCantWorkYes" value="1">
+<label for="idCantWorkYes">Yes</label>
+<input type="radio" name="cant_work" id="idCantWorkNo" value="0">
+<label for="idCantWorkNo">No</label>
+<br/><br/>
+
+<label for="idArthritis">Age of arthritis onset (0 if never):</label>
+<br/>
+<small>Age at which you were first diagnosed with arthritis. Enter 0 if you have never had arthritis.</small>
+<br/>
+<input type="number" name="arthritis_onset" id="idArthritis" min="0" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idPrescriptions">Number of current prescriptions:</label>
+<br/>
+<small>Total number of prescription medications you are currently taking.</small>
+<br/>
+<input type="number" name="prescriptions_count" id="idPrescriptions" min="0" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idPulse">Pulse (bpm):</label>
+<br/>
+<small>Your resting heart rate in beats per minute. You can measure it by counting your heartbeats for 15 seconds and multiplying by 4.</small>
+<br/>
+<input type="number" name="pulse" id="idPulse" min="0" max="300" step="1" placeholder="Enter..."/>
+<br/><br/>
+
+</fieldset>
+<br/>
+
+<fieldset>
+<legend>Blood Work</legend>
+
+<small>The following values can be found on your most recent blood test results.</small>
+<br/><br/>
+
+<label for="idGlucose">Fasting glucose (mg/dL):</label>
+<br/>
+<small>Blood sugar level measured after at least 8 hours of fasting. Normal range: 70-99 mg/dL.</small>
+<br/>
+<input type="number" name="glucose" id="idGlucose" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idHemoglobin">Hemoglobin (g/dL):</label>
+<br/>
+<small>Protein in red blood cells that carries oxygen. Normal range: 12-17 g/dL.</small>
+<br/>
+<input type="number" name="hemoglobin" id="idHemoglobin" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idHematocrit">Hematocrit (%):</label>
+<br/>
+<small>Percentage of red blood cells in your blood. Normal range: 36-50%.</small>
+<br/>
+<input type="number" name="hematocrit" id="idHematocrit" min="0" max="100" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idRBC">Red blood cell count (million/µL):</label>
+<br/>
+<small>Normal range: 4.0-5.9 million/µL.</small>
+<br/>
+<input type="number" name="RBC_count" id="idRBC" min="0" step="0.01" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idWBC">White blood cell count (10^3/µL):</label>
+<br/>
+<small>Measures your immune system activity. Normal range: 4.5-11.0 x10^3/µL.</small>
+<br/>
+<input type="number" name="white_BCC" id="idWBC" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idPlatelet">Platelet count (10^3/µL):</label>
+<br/>
+<small>Normal range: 150-400 x10^3/µL.</small>
+<br/>
+<input type="number" name="platelet_count" id="idPlatelet" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idNeutrophils">Neutrophils count (10^3/µL):</label>
+<br/>
+<small>Type of white blood cell. Normal range: 1.8-7.7 x10^3/µL.</small>
+<br/>
+<input type="number" name="neutrophils_count" id="idNeutrophils" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idMonocyte">Monocyte percent (%):</label>
+<br/>
+<small>Percentage of monocytes among white blood cells. Normal range: 2-8%.</small>
+<br/>
+<input type="number" name="monocyte_percent" id="idMonocyte" min="0" max="100" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idRDW">RDW - Red cell distribution width (%):</label>
+<br/>
+<small>Measures variation in red blood cell size. Normal range: 11.5-14.5%.</small>
+<br/>
+<input type="number" name="RDW" id="idRDW" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idIron">Iron (µg/dL):</label>
+<br/>
+<small>Normal range: 60-170 µg/dL.</small>
+<br/>
+<input type="number" name="iron" id="idIron" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idHDL">HDL cholesterol (mg/dL):</label>
+<br/>
+<small>Known as "good" cholesterol. Normal range: above 40 mg/dL (men) or above 50 mg/dL (women).</small>
+<br/>
+<input type="number" name="HDL" id="idHDL" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idALP">ALP - Alkaline Phosphatase (U/L):</label>
+<br/>
+<small>Enzyme related to liver and bone health. Normal range: 44-147 U/L.</small>
+<br/>
+<input type="number" name="ALP" id="idALP" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idGGT">GGT - Gamma-glutamyl transferase (U/L):</label>
+<br/>
+<small>Liver enzyme, often elevated with alcohol use. Normal range: 8-61 U/L.</small>
+<br/>
+<input type="number" name="GGT" id="idGGT" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idBUN">BUN - Blood urea nitrogen (mg/dL):</label>
+<br/>
+<small>Measures kidney function. Normal range: 7-20 mg/dL.</small>
+<br/>
+<input type="number" name="BUN" id="idBUN" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idAlbumin">Albumin (g/dL):</label>
+<br/>
+<small>Protein made by the liver. Normal range: 3.4-5.4 g/dL.</small>
+<br/>
+<input type="number" name="albumin" id="idAlbumin" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+<label for="idBilirubin">Bilirubin (mg/dL):</label>
+<br/>
+<small>Produced by the breakdown of red blood cells. Normal range: 0.1-1.2 mg/dL.</small>
+<br/>
+<input type="number" name="bilirubin" id="idBilirubin" min="0" step="0.1" placeholder="Enter..."/>
+<br/><br/>
+
+</fieldset>
+<br/>
+
+<input type="reset" value="Reset"/>
+<input type="submit" value="Submit"/>
+
+</form>
+
+</body>
+</html>
